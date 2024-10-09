@@ -1,25 +1,27 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+
+//@Entity // Эта аннотация указывает, что этот класс является сущностью JPA
+@Table(name = "users") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // значение первичного ключа будет генерироваться базой данных с использованием механизма автоинкремента
+    @Column(name = "user_id", updatable = false, nullable = false) //  updatable = false: это поле нельзя изменять после того, как оно было установлено при первоначальном сохранении сущности в базу данных.
     private Long id;
 
-    @Column
+    @Column(name = "user_name", length = 50, nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "user_lastName", length = 50, nullable = false)
     private String lastName;
 
-    @Column
+    @Column(name = "user_age", nullable = false)
     private Byte age;
 
     public User() {
-
+        // NOP
     }
 
     public User(String name, String lastName, Byte age) {
