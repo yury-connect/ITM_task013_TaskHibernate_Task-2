@@ -3,7 +3,6 @@ package jm.task.core.jdbc.model;
 import javax.persistence.*;
 
 
-//@Entity // Эта аннотация указывает, что этот класс является сущностью JPA
 @Table(name = "users") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
 public class User {
     @Id
