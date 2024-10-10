@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.*;
 
@@ -37,7 +36,8 @@ public class Util {
             password = properties.getProperty("db.password");
             driver = properties.getProperty("db.driver");
 
-            LOGGER.fine("getConnection(): Properties loaded successfully; driver = '" + driver + "'; url = '" + url + "'; username = '" + username + "'");
+            LOGGER.fine("getConnection(): Properties loaded successfully; " +
+                    "driver = '" + driver + "'; url = '" + url + "'; username = '" + username + "'");
 
             /*
              // Данный кусок кода почему-то не работает корректно, передается ЛИБО имя метода ЛИБО имя класса, вместе никак!
@@ -51,20 +51,25 @@ public class Util {
             Class.forName(driver); // загрузить класс драйвера JDBC в память и зарегистрировать его в DriverManager
             connection = DriverManager.getConnection(url, username, password); // Установка соединения с БД
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) { // файл 'db_config.properties' не найден по указанному пути
             String message = String.format("The file named '%s' was not found", DB_PROPERTIES_FILE_NAME);
+            LOGGER.log(Level.SEVERE, message, e);
             throw new ItmConnectionException(message, e);
-        } catch (IOException e) {
+        } catch (IOException e) { // Чтение файла 'db_config.properties' не удалось
             String message = String.format("Failed to read the file named '%s'", DB_PROPERTIES_FILE_NAME);
+            LOGGER.log(Level.SEVERE, message, e);
             throw new ItmConnectionException(message, e);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) { // Class.forName(driver) - загрузка драйвера JDBC не удалась
             String message = String.format("Failed to load the driver named '%s'", driver);
+            LOGGER.log(Level.SEVERE, message, e);
             throw new ItmConnectionException(message, e);
-        } catch (SQLException e) {
+        } catch (SQLException e) { // DriverManager.getConnection(url, username, password) - соединение с БД не удалось
             String message = String.format("Failed to connect to the database. " +
                     "Parameters: driver: '%s' url: '%s'; username: '%s'", driver, url, username);
+            LOGGER.log(Level.SEVERE, message, e);
             throw new ItmConnectionException(message, e);
         }
+        LOGGER.log(Level.FINER, "getConnection(): Connection established successfully");
         return connection;
     }
 
@@ -109,10 +114,8 @@ public class Util {
         }
     }
 
-    // Кастомный форматтер для форматирования лога по шаблону
+    // Кастомный форматтер для форматирования лога по шаблону: "%1$tF %1$tT %4$s %2$s %5$s%6$s%n"
     private static class CustomFormatter extends Formatter {
-//        private static final String PATTERN = "%1$tF %1$tT %4$s %2$s %5$s%6$s%n"; // исп. стандартный разделитель ' '
-
         private static final String DELIMITER = " // "; // Собственный кастомный разделитель
         private static final String PATTERN =
                   "%1$tF" + DELIMITER

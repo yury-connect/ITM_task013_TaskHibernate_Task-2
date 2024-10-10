@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 public class Main {
     public static void main(String[] args) {
         Util.getConnection();
-//        Logger logger = Util.getLogger(Main.class);
-//        logger.severe("This is a severe log message");
-//        System.out.printf("\n\nLogger logger = %s", logger.getName());
+        Logger logger = Util.getLogger(Main.class);
+        logger.severe("This is a severe log message");
+        System.out.printf("\n\nLogger logger = %s", logger.getName());
     }
 }
