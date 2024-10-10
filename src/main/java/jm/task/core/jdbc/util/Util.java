@@ -4,9 +4,8 @@ import jm.task.core.jdbc.exception.ItmConnectionException;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.*;
 
@@ -15,8 +14,8 @@ public class Util {
 
     private static final String PATH_TO_RESOURCES = "src/main/resources/";
     private static final String DB_PROPERTIES_FILE_NAME = "db_config.properties";
-    private static final Logger LOGGER = Util.getLogger(Util.class);
     private static Connection connection; // for JDBC
+    private static final Logger LOGGER = Util.getLogger(Util.class);
 
 
     public static Connection getConnection() {
@@ -71,6 +70,29 @@ public class Util {
         }
         LOGGER.log(Level.FINER, "getConnection(): Connection established successfully");
         return connection;
+    }
+
+
+
+    public static boolean isExistsTable() {
+        boolean result = false;
+        try (Statement statement = connection.createStatement()) {
+            String query = "SELECT 1 FROM users ";
+
+            /*
+        - Запрос не выбирает никакие данные из таблицы, а просто возвращает '1' за каждую строку
+        - Если в таблице есть строки, то будет возвращен результат с таким количеством строк, сколько записей в таблице.
+        - Если таблица пуста, запрос вернет пустой результат (без строк).
+        - Если таблица users не существует, роизойдет ошибка: 'ERROR: relation "users" does not exist.' Это означает, что таблицы с именем 'users' нет в базе данных.
+            */
+
+            ResultSet resultSet = statement.executeQuery(query);
+            result = resultSet.next();
+        } catch (SQLException e) {
+            LOGGER.warning("SQLException " + Arrays.toString(e.getStackTrace()));
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
