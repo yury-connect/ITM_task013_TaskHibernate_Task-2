@@ -73,21 +73,46 @@ public class Util {
     }
 
 
+    public static void closeConnection() {
+        try {
+            if (connection!= null && !connection.isClosed()) {
+                connection.close();
+                LOGGER.log(Level.FINE, "closeConnection(): Connection closed successfully");
+            }
+        } catch (SQLException e) {
+            String message = "Failed to close the connection";
+            LOGGER.log(Level.SEVERE, message, e);
+            throw new ItmConnectionException(message, e);
+        }
+    }
 
+
+
+
+    /*
+    Для PostgreSQL, чтобы убедиться, что таблица существует в конкретной схеме (например, в схеме 'public',
+    которая является схемой по умолчанию в PostgreSQL), база данных при подключении уже используется автоматически,
+    так что на этом этапе достаточно проверить наличие таблицы в схеме.
+    - pg_tables: Используется для получения списка таблиц в текущей подключенной базе данных.
+    - Схема: В запросе проверяется, существует ли таблица 'users' в схеме 'public' (по умолчанию для PostgreSQL).
+    - База данных: При подключении через JDBC подключение автоматически работает с базой данных
+    'ITM_task012_TaskJDBC_Task_1_db', так что дополнительной проверки для имени базы данных в запросе не требуется.
+     */
     public static boolean isExistsTable() {
-        boolean result = false;
+        boolean result = false; // ITM_task012_TaskJDBC_Task_1_db
+        String query = "SELECT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'users')";
+
         try (Statement statement = connection.createStatement()) {
-            String query = "SELECT 1 FROM users ";
 
             /*
-        - Запрос не выбирает никакие данные из таблицы, а просто возвращает '1' за каждую строку
-        - Если в таблице есть строки, то будет возвращен результат с таким количеством строк, сколько записей в таблице.
-        - Если таблица пуста, запрос вернет пустой результат (без строк).
-        - Если таблица users не существует, роизойдет ошибка: 'ERROR: relation "users" does not exist.' Это означает, что таблицы с именем 'users' нет в базе данных.
-            */
+        - Запрос проверяет наличие таблицы в схеме 'public' через системное представление 'information_schema.tables';
+        - Если таблица существует, будет возвращено TRUE. Если не существует — FALSE.
+        */
 
             ResultSet resultSet = statement.executeQuery(query);
-            result = resultSet.next();
+            if (resultSet.next()) {
+                result = resultSet.getBoolean(1); // Получаем результат (true или false)
+            }
         } catch (SQLException e) {
             LOGGER.warning("SQLException " + Arrays.toString(e.getStackTrace()));
             e.printStackTrace();
@@ -136,6 +161,7 @@ public class Util {
         }
     }
 
+
     // Кастомный форматтер для форматирования лога по шаблону: "%1$tF %1$tT %4$s %2$s %5$s%6$s%n"
     private static class CustomFormatter extends Formatter {
         private static final String DELIMITER = " // "; // Собственный кастомный разделитель
@@ -157,5 +183,4 @@ public class Util {
                     formatMessage(record), // Сообщение
                     record.getThrown() != null ? " " + record.getThrown() : ""); // Исключения (если есть)
         }
-    }
-}
+    }}

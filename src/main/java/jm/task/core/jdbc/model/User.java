@@ -13,7 +13,7 @@ public class User {
     @Column(name = "user_name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "user_lastName", length = 50, nullable = false)
+    @Column(name = "user_lastName", length = 70, nullable = false)
     private String lastName;
 
     @Column(name = "user_age", nullable = false)
@@ -59,5 +59,16 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
