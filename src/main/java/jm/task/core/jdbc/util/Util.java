@@ -15,7 +15,7 @@ public class Util {
     private static final String PATH_TO_RESOURCES = "src/main/resources/";
     private static final String DB_PROPERTIES_FILE_NAME = "db_config.properties";
     private static Connection connection; // for JDBC
-    private static final Logger LOGGER = Util.getLogger(Util.class);
+    private static final Logger LOGGER = getLogger(Util.class);
 
 
     public static Connection getConnection() {
@@ -133,7 +133,6 @@ public class Util {
             properties.load(reader);
 
             Logger logger = Logger.getLogger(clazz.getName()); // Имя логера будет соответствовать имени переданного класса
-            LogManager.getLogManager().reset(); // Очищает все обработчики, которые по умолчанию добавляются к корневому логгеру. Это нужно для того, чтобы предотвратить дублирование вывода в консоль.
             logger.setLevel(Level.parse(properties.getProperty("global.level").toUpperCase())); // Устанавливаем общий уровень для логгера
             logger.setUseParentHandlers(false); // Отключает использование родительских обработчиков, чтобы логгирование не дублировалось.
 
@@ -183,4 +182,5 @@ public class Util {
                     formatMessage(record), // Сообщение
                     record.getThrown() != null ? " " + record.getThrown() : ""); // Исключения (если есть)
         }
-    }}
+    }
+}

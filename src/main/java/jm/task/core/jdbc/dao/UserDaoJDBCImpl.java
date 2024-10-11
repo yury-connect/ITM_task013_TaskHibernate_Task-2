@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 
 
 public class UserDaoJDBCImpl implements UserDao {
-    private static final Logger LOGGER = Util.getLogger(UserDaoJDBCImpl.class);
 
     private final Connection connection;
+    private static final Logger LOGGER = Util.getLogger(UserDaoJDBCImpl.class);
 
 
     public UserDaoJDBCImpl() {
@@ -24,14 +24,14 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
         String[] sqls = {
+                "DROP TABLE IF EXISTS users;",
                 "DROP DATABASE IF EXISTS ITM_task012_TaskJDBC_Task_1_db;",
                 "CREATE DATABASE ITM_task012_TaskJDBC_Task_1_db;",
 
-                "DROP TABLE IF EXISTS users;",
                 "CREATE TABLE users (" +
-                    "user_id BIGSERIAL PRIMARY KEY, " +         // Поле id с автоинкрементом (эквивалент LONG в Java)\n" +
-                    "user_name VARCHAR(50) NOT NULL, "  +       // Поле name с максимальной длиной 50 символов\n" +
-                    "user_lastName VARCHAR(70) NOT NULL, " +    // Поле lastName с максимальной длиной 70 символов\n" +
+                    "user_id BIGSERIAL PRIMARY KEY, " +         // Поле id с автоинкрементом (эквивалент LONG в Java) // В PostgreSQL для создания автоинкрементного поля используется тип данных SERIAL, BIGSERIAL, или SMALLSERIAL.;
+                    "user_name VARCHAR(50) NOT NULL, "  +       // Поле name с максимальной длиной 50 символов;
+                    "user_lastName VARCHAR(70) NOT NULL, " +    // Поле lastName с максимальной длиной 70 символов;
                     "user_age SMALLINT NOT NULL);"
         };
         executeSql(connection, sqls);
@@ -64,7 +64,7 @@ public class UserDaoJDBCImpl implements UserDao {
             LOGGER.warning("SQLException: \n" + Arrays.toString(e.getStackTrace()));
             e.printStackTrace();
         }
-        LOGGER.info("Finished;");
+        LOGGER.info("finished;");
     }
 
 
@@ -114,7 +114,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
 
     // services
-    private static void executeSql(Connection connection, String... sqls) {
+    private void executeSql(Connection connection, String... sqls) {
         try (Statement statement = connection.createStatement()) {
             for (String sql : sqls) {
                 statement.execute(sql);
