@@ -41,7 +41,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         String[] sqls = {
                 "DROP TABLE IF EXISTS users;",                  // Удаление таблицы users из базы данных, если она существует
-                "DROP DATABASE IF EXISTS ITM_task012_TaskJDBC_Task_1_db;",
+//                "DROP DATABASE IF EXISTS ITM_task012_TaskJDBC_Task_1_db;", // удалять саму БД, думаю пока не стоит
         };
         LOGGER.log(Level.FINER, "dropUsersTable(): finished");
     }
