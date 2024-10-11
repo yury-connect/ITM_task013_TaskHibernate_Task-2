@@ -82,7 +82,7 @@ public class Main {
     private static void printAllUsersFromDB() {
         System.out.println("\n\tВывожу всех пользователей из таблицы 'users':");
         service.getAllUsers().stream().forEach(System.out::println);
-        pause(1);
+        pause(5);
     }
 
     private static void pause(int seconds) {
