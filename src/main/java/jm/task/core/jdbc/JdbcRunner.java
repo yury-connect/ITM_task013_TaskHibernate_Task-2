@@ -10,9 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Main {
+public class JdbcRunner {
     private static UserService service = new UserServiceImpl(); // для JDBC
-    private static final Logger LOGGER = UtilJDBC.getLogger(Main.class);
+    private static final Logger LOGGER = UtilJDBC.getLogger(JdbcRunner.class);
 
     public static void main(String[] args) throws SQLException {
 
