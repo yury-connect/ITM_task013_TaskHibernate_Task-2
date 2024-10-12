@@ -10,12 +10,12 @@ import java.util.Properties;
 import java.util.logging.*;
 
 
-public class Util {
+public class UtilJDBC {
 
     private static final String PATH_TO_RESOURCES = "src/main/resources/";
     private static final String DB_PROPERTIES_FILE_NAME = "db_config.properties";
     private static Connection connection; // for JDBC
-    private static final Logger LOGGER = getLogger(Util.class);
+    private static final Logger LOGGER = getLogger(UtilJDBC.class);
 
 
     public static Connection getConnection() {

@@ -37,26 +37,42 @@
 <!--            <version>8.0.25</version>-->
 <!--        </dependency>-->
 
-<!--        В данно проекте указанная зависимость не требуется-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate.javax.persistence</groupId>-->
-<!--            <artifactId>hibernate-jpa-2.1-api</artifactId>-->
-<!--            <version>1.0.2.Final</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
 
-<!--        В данно проекте указанная зависимость не требуется-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-core</artifactId>-->
-<!--            <version>5.6.3.Final</version>-->
-<!--        </dependency>-->
+        <!--Эта зависимомть шла в проекте, обновляю ее-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.hibernate</groupId>-->
+        <!--            <artifactId>hibernate-core</artifactId>-->
+        <!--            <version>5.6.3.Final</version>-->
+        <!--        </dependency>-->
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.1.Final</version> <!-- A SQL dialect for PostgreSQL 11 and above.-->
+
+<!-- Для зависимости hibernate-core в <type> если указано значение pom, то Это указывает Maven, что следует использовать pom.xml файл этой зависимости, а не JAR-файл с её библиотекой. Это может быть причиной того, что диалект (org.hibernate.dialect.PostgreSQLDialect) не распознаётся.-->
+            <!--            <type>pom</type>-->
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

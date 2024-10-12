@@ -2,7 +2,7 @@ package jm.task.core.jdbc.service;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.dao.*;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.util.UtilJDBC;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao = new UserDaoJDBCImpl(); // для JDBC
-    private static final Logger LOGGER = Util.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = UtilJDBC.getLogger(UserServiceImpl.class);
 
 
     public void createUsersTable() {

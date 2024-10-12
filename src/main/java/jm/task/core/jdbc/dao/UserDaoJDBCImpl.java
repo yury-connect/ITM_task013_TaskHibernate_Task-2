@@ -1,7 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.util.UtilJDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import java.util.logging.Logger;
 public class UserDaoJDBCImpl implements UserDao {
 
     private final Connection connection;
-    private static final Logger LOGGER = Util.getLogger(UserDaoJDBCImpl.class);
+    private static final Logger LOGGER = UtilJDBC.getLogger(UserDaoJDBCImpl.class);
 
 
     public UserDaoJDBCImpl() {
-        this.connection = Util.getConnection();
+        this.connection = UtilJDBC.getConnection();
     }
 
 
@@ -48,7 +48,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
 
     public void saveUser(String name, String lastName, byte age) {
-        if (!Util.isExistsTable()) {
+        if (!UtilJDBC.isExistsTable()) {
             LOGGER.log(Level.INFO, "An attempt to save the User to a non-existent table. Creating a table for the User;");
             createUsersTable();
         }

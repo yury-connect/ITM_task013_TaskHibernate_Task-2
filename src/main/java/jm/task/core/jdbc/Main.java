@@ -3,7 +3,7 @@ package jm.task.core.jdbc;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.util.UtilJDBC;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Main {
     private static UserService service = new UserServiceImpl(); // для JDBC
-    private static final Logger LOGGER = Util.getLogger(Main.class);
+    private static final Logger LOGGER = UtilJDBC.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
 
@@ -73,7 +73,7 @@ public class Main {
                 "Произведено удаление самой таблицы. finished");
         printAllUsersFromDB();
 
-        Util.closeConnection();
+        UtilJDBC.closeConnection();
         LOGGER.log(Level.INFO, "main(String[] args): " +
                 "Освобождены ресурсы и закончена работа приложения: finished");
     }
