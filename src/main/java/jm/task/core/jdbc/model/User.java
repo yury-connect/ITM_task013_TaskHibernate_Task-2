@@ -1,16 +1,18 @@
 package jm.task.core.jdbc.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
 
 
-@Entity
+
+//@Getter
+//@Setter
+//@ToString
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
+@Builder // Генерирует крассивый сущности
+@Entity
 @Table(name = "users") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
 public class User {
     @Id
@@ -45,3 +47,14 @@ public class User {
                 '}';
     }
 }
+
+/*
+Сгенерированный Builder позволяет создавать объект следующим образом:
+User user = User.builder()
+                .id(1L)
+                .name("Ivan")
+                .email("ivan@example.com")
+                .age(30)
+                .build();
+ */
+

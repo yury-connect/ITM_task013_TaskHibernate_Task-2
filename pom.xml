@@ -37,11 +37,19 @@
 <!--            <version>8.0.25</version>-->
 <!--        </dependency>-->
 
+
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.javax.persistence</groupId>-->
+<!--            <artifactId>hibernate-jpa-2.1-api</artifactId>-->
+<!--            <version>1.0.2.Final</version>-->
+<!--        </dependency>-->
+<!--        Заменил верхнюю заваисимость зависимостью ниже. т.к. Hibernate версии 6 использует спецификации Jakarta Persistence (jakarta.persistence-api) вместо Javax. Лучше заменить hibernate-jpa-2.1-api на jakarta.persistence-api -->
         <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.2.Final</version>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
         </dependency>
+
 
         <!--Эта зависимомть шла в проекте, обновляю ее-->
         <!--        <dependency>-->
