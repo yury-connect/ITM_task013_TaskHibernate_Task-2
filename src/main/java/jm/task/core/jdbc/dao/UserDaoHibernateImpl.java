@@ -111,20 +111,4 @@ public class UserDaoHibernateImpl implements UserDao {
         }
         return result;
     }
-
-//    private void executeUpdate(String sql, String successMessage) {
-//        Transaction transaction = null;
-//        try (Session session = UtilHibernate.getSessionFactory().openSession()) {
-//            transaction = session.beginTransaction();
-//            session.createNativeQuery(sql).executeUpdate();
-//            transaction.commit();
-//            LOGGER.log(Level.FINE, successMessage + " : finished");
-//        } catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            LOGGER.log(Level.WARNING, "Ошибка при выполнении SQL запроса: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//    }
 }
