@@ -6,6 +6,7 @@ DROP DATABASE IF EXISTS ITM_task013_TaskHibernate_Task_2_db;    -- Удаляю 
 CREATE DATABASE ITM_task013_TaskHibernate_Task_2_db;            -- Создаю базу если она еще не существует;
 
 CREATE USER user1 WITH PASSWORD '1234';                                         -- Создаем пользователя с паролем
+
 GRANT ALL PRIVILEGES ON DATABASE ITM_task013_TaskHibernate_Task_2_db TO user1;  -- Даём пользователю права на базу данных
 
 CREATE TABLE IF NOT EXISTS users (
@@ -17,4 +18,4 @@ CREATE TABLE IF NOT EXISTS users (
 SELECT * FROM users;
 
 DROP TABLE IF EXISTS users;
-DROP DATABASE IF EXISTS ITM_task013_TaskHibernate_Task_2_db;        -- Удаляю базу если она существует;
+DROP DATABASE IF EXISTS ITM_task013_TaskHibernate_Task_2_db;    -- Удаляю базу если она существует;
