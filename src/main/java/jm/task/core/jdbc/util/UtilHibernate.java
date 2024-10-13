@@ -1,6 +1,5 @@
 package jm.task.core.jdbc.util;
 
-import jm.task.core.jdbc.exception.ItmConnectionException;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
