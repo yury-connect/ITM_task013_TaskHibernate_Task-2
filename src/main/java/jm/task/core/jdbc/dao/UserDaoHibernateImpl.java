@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class UserDaoHibernateImpl implements UserDao {
 
     private static final Logger LOGGER = UtilJDBC.getLogger(UserDaoHibernateImpl.class);
@@ -30,6 +31,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 + ")";
         executeUpdate(createTableSQL, "Таблица 'users' успешно создана (если не существовала).");
     }
+
 
     @Override
     public void dropUsersTable() {
@@ -62,6 +64,7 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 
+
     @Override
     public void removeUserById(long id) {
         Transaction transaction = null;
@@ -87,6 +90,7 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 
+
     @Override
     public List<User> getAllUsers() {
         List<User> users = null;
@@ -101,11 +105,13 @@ public class UserDaoHibernateImpl implements UserDao {
         return users;
     }
 
+
     @Override
     public void cleanUsersTable() {
         String cleanTableSQL = "DELETE FROM users";
         executeUpdate(cleanTableSQL, "Таблица 'users' очищена.");
     }
+
 
 
 
