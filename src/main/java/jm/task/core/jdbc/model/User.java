@@ -8,12 +8,12 @@ import lombok.*;
 //@Getter
 //@Setter
 //@ToString
-@Data
+@Data // генерирует все полями данного класса в виде геттеров, сеттеров, конструкторов, toString() и hashCode()
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // Генерирует крассивый сущности
+@Builder // Чтобы генерировать красивым образом эту сущность (пример ниже по коду)
 @Entity
-@Table(name = "users") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
+@Table(name = "users", schema = "public") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // значение первичного ключа будет генерироваться базой данных с использованием механизма автоинкремента
@@ -34,17 +34,6 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
     }
 }
 

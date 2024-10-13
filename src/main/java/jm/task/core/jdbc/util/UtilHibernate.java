@@ -4,6 +4,7 @@ import jm.task.core.jdbc.exception.ItmConnectionException;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
 
 import java.io.IOException;
@@ -29,15 +30,17 @@ public class UtilHibernate {
 
                 Configuration configuration = new Configuration();
 
-                // Подключаем 'hibernate.cfg.xml'
+//                configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy()); // Используем конвейер имен для Hibernate / в моем случае -я вручную именую поля таблиц в сущности
+
+                // Подключаем 'hibernate.cfg.xml' / так давно не делают, а делают через аннотации, см. ниже
                 configuration.configure();
 
+                /*
                 // Добавляем аннотированный класс до создания SessionFactory
                 configuration.addAnnotatedClass(User.class); // Добавление аннотированных классов должно происходить до создания SessionFactory. // т.е. до buildSessionFactory()
+                */
 
-//                configuration.setProperties(properties);
-
-//                sessionFactory = configuration.configure().buildSessionFactory();
+                configuration.setProperties(properties);
 
                 // Строим фабрику сессий
                 sessionFactory = configuration.buildSessionFactory();

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao = new UserDaoJDBCImpl(); // для JDBC
+    private final UserDao userDao = new UserDaoHibernateImpl(); // для Hibernate
     private static final Logger LOGGER = UtilJDBC.getLogger(UserServiceImpl.class);
 
 
