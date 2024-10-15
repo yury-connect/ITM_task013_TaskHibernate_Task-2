@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
                        user_lastName VARCHAR(70) NOT NULL,      -- Поле lastName с максимальной длиной 70 символов;
                        user_age SMALLINT NOT NULL               -- Поле age, хранящее возраст как целое число;
 );
-SELECT * FROM users;
+    SELECT * FROM users;
 
 DROP TABLE IF EXISTS users;
 DROP DATABASE IF EXISTS ITM_task013_TaskHibernate_Task_2_db;    -- Удаляю базу если она существует;
