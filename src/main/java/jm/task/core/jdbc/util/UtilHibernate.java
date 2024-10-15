@@ -39,7 +39,7 @@ public final class UtilHibernate extends AbstractUtil {
 //                configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy()); // Используем конвейер имен для Hibernate / в моем случае -я вручную именую поля таблиц в сущности
 
                 // Подключаем 'hibernate.cfg.xml' / так давно не делают, а делают через аннотации, см. ниже
-                configuration.configure();
+//                configuration.configure();
 
                 // Добавляем аннотированный класс до создания SessionFactory
                 configuration.addAnnotatedClass(User.class); // Добавление аннотированных классов должно происходить до создания SessionFactory. // т.е. до buildSessionFactory()
