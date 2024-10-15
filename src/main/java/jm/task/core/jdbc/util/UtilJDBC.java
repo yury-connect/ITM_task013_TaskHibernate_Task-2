@@ -12,7 +12,7 @@ import java.util.logging.*;
 
 public final class UtilJDBC extends AbstractUtil {
 
-    private static final String DB_PROPERTIES_FILE_NAME = "db_JDBC_config.properties";
+    private static final String DB_PROPERTIES_FILE_NAME = "configurations/db_JDBC_config.properties";
     private static Connection connection; // for JDBC
     private static final Logger LOGGER = getLogger(UtilJDBC.class);
 

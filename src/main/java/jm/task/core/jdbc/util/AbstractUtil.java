@@ -18,7 +18,7 @@ public abstract class AbstractUtil {
 
     public static Logger getLogger(Class clazz) {
         StringBuilder sb = new StringBuilder();
-        sb.append("logger_");
+        sb.append("configurations/logger_");
         sb.append(clazz.getSimpleName());
         sb.append("_config.properties");
 

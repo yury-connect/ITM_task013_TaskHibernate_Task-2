@@ -5,16 +5,16 @@ import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.UtilJDBC;
 
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
 
 public final class JdbcRunner extends AbstractRunner {
 
-    private static final UserService SERVICE = new UserServiceImpl(new UserDaoJDBCImpl()); // для JDBC
-    private static final Logger LOGGER = UtilJDBC.getLogger(JdbcRunner.class);
+    public static void main(String[] args) {
+        UserService service = new UserServiceImpl(new UserDaoJDBCImpl()); // для JDBC
+        Logger logger = UtilJDBC.getLogger(JdbcRunner.class);
+        int timeOutSeconds = 1; // в секундах, продолжительность паузы между шагами
 
-    public static void main(String[] args) throws SQLException {
-        processing(SERVICE, LOGGER, 1);
+        processing(service, logger, timeOutSeconds);
     }
 }

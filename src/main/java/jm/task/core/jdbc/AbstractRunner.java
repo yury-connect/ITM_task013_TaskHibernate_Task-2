@@ -73,12 +73,21 @@ public abstract class AbstractRunner {
     }
 
 
+    /**
+     * Метод делает паузу на указанное время в секундах и выводит/ сопровождает при этом все комментариями.
+     * @param service - сервис для работы с пользователями
+     * @param pauseSeconds - величина паузы в секундах
+     */
     private static void printAllUsersFromDB(UserService service, int pauseSeconds) {
         System.out.println("\n\tВывожу всех пользователей из таблицы 'users':");
         service.getAllUsers().stream().forEach(System.out::println);
         pause(pauseSeconds);
     }
 
+    /**
+     * Метод делает паузу на указанное время в секундах.
+     * @param pauseSeconds - величина паузы в секундах
+     */
     private static void pause(int pauseSeconds) {
         System.out.print("\nПауза на '" + pauseSeconds + "' секунд: ");
         try {
