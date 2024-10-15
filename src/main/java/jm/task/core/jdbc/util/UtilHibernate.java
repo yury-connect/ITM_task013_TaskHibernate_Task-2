@@ -17,7 +17,7 @@ public final class UtilHibernate extends AbstractUtil {
 
 
     public static SessionFactory getSessionFactory() {
-        final String hibernatePropertiesFileName = "hibernateConfig.properties";
+        final String hibernatePropertiesFileName = "db_Hibernate_config.properties";
         if (sessionFactory == null || sessionFactory.isClosed()) {
             try (InputStream input = UtilHibernate.class.getClassLoader().getResourceAsStream(hibernatePropertiesFileName)) {
                 if (input == null) {
