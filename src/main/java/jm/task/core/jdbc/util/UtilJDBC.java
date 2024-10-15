@@ -39,7 +39,8 @@ public final class UtilJDBC extends AbstractUtil {
                           "driver = '" + driver
                         + "'; url = '" + url
                         + "'; username = '" + username + "'"
-                        + "'; password = '" + "*".repeat(properties.getProperty("hibernate.connection.password").length()) + "'" + "'");
+                        + "'; password = '" + "*".repeat(password.length()) + "'");
+
             /*
              // Данный кусок кода почему-то не работает корректно, передается ЛИБО имя метода ЛИБО имя класса, вместе никак!
             LOGGER.logp(
