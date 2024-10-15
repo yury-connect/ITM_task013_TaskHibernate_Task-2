@@ -71,7 +71,6 @@ public class JdbcRunner {
         System.out.println("\n\n\tПроизведено удаление самой таблицы.");
         LOGGER.log(Level.INFO, "main(String[] args): " +
                 "Произведено удаление самой таблицы. finished");
-        printAllUsersFromDB();
 
         UtilJDBC.closeConnection();
         LOGGER.log(Level.INFO, "main(String[] args): " +
@@ -82,7 +81,7 @@ public class JdbcRunner {
     private static void printAllUsersFromDB() {
         System.out.println("\n\tВывожу всех пользователей из таблицы 'users':");
         service.getAllUsers().stream().forEach(System.out::println);
-        pause(5);
+        pause(1);
     }
 
     private static void pause(int seconds) {

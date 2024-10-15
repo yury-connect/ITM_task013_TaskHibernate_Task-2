@@ -12,7 +12,7 @@ import java.util.logging.*;
 
 public final class UtilJDBC extends AbstractUtil {
 
-    private static final String DB_PROPERTIES_FILE_NAME = "db_Hibernate_config.properties";
+    private static final String DB_PROPERTIES_FILE_NAME = "db_JDBC_config.properties";
     private static Connection connection; // for JDBC
     private static final Logger LOGGER = getLogger(UtilJDBC.class);
 
@@ -36,7 +36,10 @@ public final class UtilJDBC extends AbstractUtil {
                 driver = properties.getProperty("db.driver");
 
                 LOGGER.fine("getConnection(): Properties loaded successfully; " +
-                        "driver = '" + driver + "'; url = '" + url + "'; username = '" + username + "'");
+                          "driver = '" + driver
+                        + "'; url = '" + url
+                        + "'; username = '" + username + "'"
+                        + "'; password = '" + "*".repeat(properties.getProperty("hibernate.connection.password").length()) + "'" + "'");
             /*
              // Данный кусок кода почему-то не работает корректно, передается ЛИБО имя метода ЛИБО имя класса, вместе никак!
             LOGGER.logp(
