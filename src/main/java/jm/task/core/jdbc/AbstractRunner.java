@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public abstract class AbstractRunner {
 
-    protected static void processing(final UserService service, final Logger logger, int timeOutSeconds) {
+    protected static void performDemonstration(final UserService service, final Logger logger, int timeOutSeconds) {
         service.createUsersTable();
         System.out.println("\n\tВ базе данных 'ITM_task012_TaskJDBC_Task_1_db'. Создана таблица 'users'.");
         logger.log(Level.INFO, "main(String[] args): " +

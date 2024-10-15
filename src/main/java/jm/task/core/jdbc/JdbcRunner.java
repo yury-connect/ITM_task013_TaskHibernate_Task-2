@@ -13,8 +13,8 @@ public final class JdbcRunner extends AbstractRunner {
     public static void main(String[] args) {
         UserService service = new UserServiceImpl(new UserDaoJDBCImpl()); // для JDBC
         Logger logger = UtilJDBC.getLogger(JdbcRunner.class);
-        int timeOutSeconds = 1; // в секундах, продолжительность паузы между шагами
+        int timeOutSeconds = 5; // в секундах, продолжительность паузы между шагами
 
-        processing(service, logger, timeOutSeconds);
+        performDemonstration(service, logger, timeOutSeconds);
     }
 }

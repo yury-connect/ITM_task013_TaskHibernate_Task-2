@@ -5,9 +5,7 @@ import lombok.*;
 
 
 
-//@Getter
-//@Setter
-//@ToString
+
 @Data // генерирует все полями данного класса в виде геттеров, сеттеров, конструкторов, toString() и hashCode()
 @NoArgsConstructor
 @AllArgsConstructor
