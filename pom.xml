@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>TaskJDBC</artifactId>
+    <groupId>tech.it-mentor</groupId>
+    <artifactId>ITM_task013_TaskHibernate_Task-2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -20,8 +20,33 @@
         </plugins>
     </build>
 
+
+    <name>Archetype - ITM_task013_TaskHibernate_Task-2 - test_task</name>
+    <url>https://www.it-mentor.tech/</url>
+
+
+    <!--  Описание проекта (<description>):-->
+    <description>This project demonstrates basic CRUD Database operations using Hibernate ORM.</description>
+
+
+    <!--  Разработчики (<developers>):-->
+    <developers>
+        <developer>
+            <id>LapitskiYury</id>
+            <name>Lapitski Yury</name>
+            <email>yury.connect@gmail.com</email>
+            <roles>
+                <role>developer</role>
+                <role>maintainer</role>
+            </roles>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+
+
+
     <dependencies>
-<!--         Ваши зависимости-->
+
          <!-- https://mvnrepository.com/artifact/junit/junit -->
          <dependency>
              <groupId>junit</groupId>
@@ -31,22 +56,32 @@
          </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.25</version>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.2.Final</version>
-        </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.6.3.Final</version>
+            <version>6.6.1.Final</version> <!-- A SQL dialect for PostgreSQL 11 and above.-->
         </dependency>
-     </dependencies>
 
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
 </project>

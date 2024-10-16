@@ -1,62 +1,47 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Table
+
+
+
+@Data // генерирует все полями данного класса в виде геттеров, сеттеров, конструкторов, toString() и hashCode()
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder // Чтобы генерировать красивым образом эту сущность (пример ниже по коду)
+@Entity
+@Table(name = "users", schema = "public") //  таблица в базе данных, к которой привязан этот класс, имеет имя "users"
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // значение первичного ключа будет генерироваться базой данных с использованием механизма автоинкремента
+    @Column(name = "user_id", updatable = false, nullable = false) //  updatable = false: это поле нельзя изменять после того, как оно было установлено при первоначальном сохранении сущности в базу данных.
     private Long id;
 
-    @Column
+    @Column(name = "user_name", length = 50, nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "user_lastName", length = 70, nullable = false)
     private String lastName;
 
-    @Column
+    @Column(name = "user_age", nullable = false)
     private Byte age;
 
-    public User() {
-
-    }
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Byte getAge() {
-        return age;
-    }
-
-    public void setAge(Byte age) {
-        this.age = age;
-    }
 }
+
+/*
+Сгенерированный Builder позволяет создавать объект следующим образом:
+User user = User.builder()
+                .id(1L)
+                .name("Ivan")
+                .email("ivan@example.com")
+                .age(30)
+                .build();
+ */
+
