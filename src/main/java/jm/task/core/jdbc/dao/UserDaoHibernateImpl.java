@@ -47,7 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         User user = User.builder().name(name).lastName(lastName).age(age).build();
-        executeTransaction(session -> session.save(user));
+        executeTransaction(session -> session.persist(user)); // `persist` используется вместо `save` для JPA совместимости / т.к. он соответствует JPA-стандарту и позволяет обойтись без возвращаемого значения.
         LOGGER.log(Level.FINE, "Пользователь '" + name + "' успешно сохранен в DB.");
     }
 
@@ -55,9 +55,10 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         executeTransaction(session -> {
-            User user = session.get(User.class, id);
-            if (user != null) {
-                session.remove(user);
+            int deletedCount = session.createQuery("DELETE FROM User WHERE id = :userId") // Переписываем с использованием HQL
+                    .setParameter("userId", id)
+                    .executeUpdate();
+            if (deletedCount > 0) {
                 LOGGER.log(Level.FINE, "Пользователь с ID " + id + " успешно удален.");
             } else {
                 LOGGER.log(Level.WARNING, "Пользователь с ID " + id + " не найден.");
@@ -68,7 +69,8 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> userList = executeQuery(session -> session.createQuery("FROM User", User.class).list());
+        String getAllHQL = "FROM User";  // Пишем с использованием HQL
+        List<User> userList = executeQuery(session -> session.createQuery(getAllHQL, User.class).list());
         LOGGER.log(Level.FINE, "Получено " + userList.size() + " пользователей.");
         return userList;
     }
@@ -76,8 +78,8 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String cleanTableSQL = "DELETE FROM users";
-        executeTransaction(session -> session.createNativeQuery(cleanTableSQL).executeUpdate());
+        String cleanTableHQL = "DELETE FROM users";  // Пишем с использованием HQL
+        executeTransaction(session -> session.createNativeQuery(cleanTableHQL).executeUpdate());
         LOGGER.log(Level.FINE, "Таблица 'users' очищена.");
     }
 
