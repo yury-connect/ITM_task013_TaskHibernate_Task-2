@@ -8,6 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * @author Yury Lapitski
+ */
 public abstract class AbstractRunner {
 
     protected static void performDemonstration(final UserService service, final Logger logger, int timeOutSeconds) {
